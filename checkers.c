@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 
+// Set up the initial board configuration
 void setup_board(int board[8][8]) {
     for (int row = 0; row < 8; row++) {
         for (int col = 0; col < 8; col++) {
@@ -17,6 +18,7 @@ void setup_board(int board[8][8]) {
     }
 }
 
+// Print the current state of the board
 void print_board(int board[8][8]) {
     for (int row = 0; row < 8; row++) {
         printf("%d ", abs(row-8));
@@ -40,6 +42,7 @@ void print_board(int board[8][8]) {
     printf("  a b c d e f g h\n");
 }
 
+// Check if a piece has any available captures
 bool check_available_captures(int board[8][8], int row, int col) {
     int piece = board[row][col];
     int directions[4][2];
@@ -99,6 +102,7 @@ bool check_available_captures(int board[8][8], int row, int col) {
     return false;
 }
 
+// Check if a player has any available captures
 bool check_capture_available(int board[8][8], int player) {
     for (int row = 0; row < 8; row++) {
         for (int col = 0; col < 8; col++) {
@@ -112,6 +116,7 @@ bool check_capture_available(int board[8][8], int player) {
     return false;
 }
 
+// Check if a piece has any available moves
 bool check_available_moves(int board[8][8], int row, int col) {
     int piece = board[row][col];
     int directions[4][2];
@@ -160,6 +165,7 @@ bool check_available_moves(int board[8][8], int row, int col) {
     return false;
 }
 
+// Check if a player has any available moves
 bool check_move_available(int board[8][8], int player) {
     for (int row = 0; row < 8; row++) {
         for (int col = 0; col < 8; col++) {
@@ -173,6 +179,7 @@ bool check_move_available(int board[8][8], int player) {
     return false;
 }
 
+// Check if a move is legal
 bool check_legal(int board[8][8], int start_row, int start_col, int end_row, int end_col, int player) {
     if (start_row < 0 || start_row >= 8 || start_col < 0 || start_col >= 8 || end_row < 0 || end_row >= 8 || end_col < 0 || end_col >= 8){
         printf("Invalid move: Out of bounds\n");
@@ -222,6 +229,7 @@ bool check_legal(int board[8][8], int start_row, int start_col, int end_row, int
     return true;
 }
 
+// Change pieces to kings if they reach the opposite end of the board, return true if any pieces were kinged, false otherwise
 bool make_kings(int board[8][8]) {
     int kinged = 0;
     for (int col = 0; col < 8; col++) {
@@ -238,6 +246,7 @@ bool make_kings(int board[8][8]) {
     return false;
 }
 
+// Count the number of pieces for a given player
 int count_pieces(int board[8][8], int player) {
     int count = 0;
     for (int row = 0; row < 8; row++) {
